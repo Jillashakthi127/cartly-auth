@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login – Cartly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span>Cartly</span>
+      </a>
+      <form class="search" role="search" onsubmit="return false">
+        <label for="site-search" class="sr-only">Search for products</label>
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="site-search" type="search" placeholder="Search for products, brands and more">
+        </div>
+      </form>
+      <nav class="header-nav" aria-label="Account">
+        <a href="#">Become a Seller</a>
+        <a href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></svg>
+          <span>Cart</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="auth-card">
+      <section class="auth-side">
+        <h1>Login</h1>
+        <p>Get access to your Orders, Wishlist and Recommendations</p>
+        <svg class="illustration" viewBox="0 0 240 180" aria-hidden="true">
+          <rect x="20" y="96" width="76" height="64" rx="4" fill="#FFD24C"/>
+          <path d="M20 116h76M58 96v20" stroke="#E0A800" stroke-width="3"/>
+          <rect x="104" y="40" width="86" height="120" rx="10" fill="#FFFFFF"/>
+          <rect x="114" y="54" width="66" height="44" rx="4" fill="#C7D7FE"/>
+          <rect x="114" y="106" width="44" height="6" rx="3" fill="#C7D7FE"/>
+          <rect x="114" y="118" width="30" height="6" rx="3" fill="#C7D7FE"/>
+          <rect x="114" y="136" width="66" height="14" rx="3" fill="#F97316"/>
+          <path d="M170 30l30-14v40l-30 14z" fill="#FFFFFF" opacity="0.35"/>
+          <circle cx="208" cy="128" r="14" fill="#FFFFFF" opacity="0.35"/>
+          <circle cx="40" cy="70" r="8" fill="#FFFFFF" opacity="0.35"/>
+        </svg>
+      </section>
+
+      <section class="auth-main">
+        <!-- Step 1: identifier -->
+        <form class="step" id="step-id" novalidate>
+          <div class="field" id="f-id">
+            <label for="login-id">Enter Email / Mobile number</label>
+            <input id="login-id" type="text" inputmode="email" autocomplete="username" aria-describedby="e-id">
+            <p class="error" id="e-id" role="alert">Please enter a valid Email ID or 10-digit mobile number</p>
+          </div>
+          <p class="terms">By continuing, you agree to Cartly’s <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+          <button type="submit" class="btn-primary">Request OTP</button>
+          <div class="divider">OR</div>
+          <button type="button" class="btn-secondary" id="use-password">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <span>Login with password</span>
+          </button>
+        </form>
+
+        <!-- Step 1b: password -->
+        <form class="step" id="step-pass" novalidate hidden>
+          <div class="field" id="f-id2">
+            <label for="login-id2">Email / Mobile number</label>
+            <input id="login-id2" type="text" inputmode="email" autocomplete="username">
+            <p class="error" role="alert">Please enter a valid Email ID or 10-digit mobile number</p>
+          </div>
+          <div class="field" id="f-pw">
+            <label for="login-pw">Password</label>
+            <div class="inline-group">
+              <input id="login-pw" type="password" autocomplete="current-password">
+              <button type="button" class="btn-link" data-toggle-pass="login-pw" aria-label="Show password">Show</button>
+            </div>
+            <p class="error" role="alert">Please enter your password</p>
+          </div>
+          <div class="row" style="justify-content: flex-end"><a href="#" style="font-size:14px;font-weight:600">Forgot password?</a></div>
+          <button type="submit" class="btn-primary">Login</button>
+          <div class="divider">OR</div>
+          <button type="button" class="btn-secondary" id="use-otp">Request OTP instead</button>
+        </form>
+
+        <!-- Step 2: OTP -->
+        <form class="step" id="step-otp" novalidate hidden>
+          <div class="row">
+            <p>Please enter the OTP sent to <strong id="otp-target"></strong></p>
+            <button type="button" class="btn-link" data-back>Change</button>
+          </div>
+          <div class="field" id="f-otp">
+            <label for="login-otp">6-digit OTP</label>
+            <input id="login-otp" class="otp-input" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
+            <p class="error" role="alert">Enter the 6-digit code we sent you</p>
+          </div>
+          <button type="submit" class="btn-primary">Verify</button>
+          <p class="resend">Didn’t get it? <button type="button" class="btn-link" data-resend>Resend OTP</button></p>
+        </form>
+
+        <!-- Done -->
+        <div class="step success" id="step-done" hidden>
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          <h2>You’re signed in</h2>
+          <p>Welcome back! Your cart and wishlist are synced.</p>
+          <button type="button" class="btn-secondary" data-back>Back to login</button>
+        </div>
+
+        <p class="switch"><a href="signup.html">New to Cartly? Create an account</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Cartly</span>
+      <nav aria-label="Footer">
+        <a href="#">Help Center</a>
+        <a href="#">Returns</a>
+        <a href="#">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>Cartly.initLogin();</script>
+</body>
+</html>
